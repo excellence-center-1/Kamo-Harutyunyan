@@ -11,8 +11,8 @@ class List{
     Node* end = NULL;
     Node* head = NULL;
     void push_front(int );
-	void push_back(int );
-	void pop_back();
+    void push_back(int );
+    void pop_back();
     void pop_front();
     int size();
     void insert(int ,int );
