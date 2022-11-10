@@ -88,6 +88,10 @@ void List :: pop_back(){
     if (count < 1){
         std::cout << std::endl << "List is empty:" << std::endl;
     }
+    else if (end == NULL){
+        head = NULL;
+        end = NULL;
+    }
     else {
         Node* temp;
         temp = end->prev;
@@ -95,12 +99,16 @@ void List :: pop_back(){
         temp->next = NULL;
         end = temp;
         count -= 1;
-        }
     }
 }
+
 void List :: pop_front(){
     if (count < 1){
         std::cout << std::endl << "List is empty:" << std::endl;
+    }
+    else if (head == NULL){
+        head = NULL;
+        end = NULL;
     }
     else {
         Node* temp;
