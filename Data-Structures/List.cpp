@@ -1,15 +1,23 @@
 #include <iostream>
 class Node {
-    public:
-        int data;
-        Node* next = NULL;
-        Node* prev = NULL;
+public:
+    int data;
+    Node* next;
+    Node* prev;
+public:
+    Node()
+        :end(nullptr)
+        ,head(nullptr)
+        ,data(0)
+    {}
 };
+
 class List{
-    public:
+public:
     int count = 0;
-    Node* end = NULL;
-    Node* head = NULL;
+    Node* end;
+    Node* head;
+public:
     bool empty();
     void push_front(int );
     void push_back(int );
@@ -18,6 +26,14 @@ class List{
     int size();
     void insert(int ,int );
     void clear();
+public:
+    List()
+        :end(nullptr)
+        ,head(nullptr)
+    {}
+    ~List(){
+        clear();
+    }
 };
 bool List :: empty();{
     if (count > 0)
@@ -27,14 +43,12 @@ bool List :: empty();{
     return true;
 }
 void List::clear(){  
-    Node* temp;
-    while (head != NULL)
+    while (end)
     {
-        temp = head;
-        delete(head);
-        head = temp->next;
+        end = end->prev;
+        delete end->next;
     }
-    
+    head = nullptr;
 }
 void List::insert (int index, int value){
     if (index > count || index < 0){
@@ -67,13 +81,14 @@ void List :: push_front(int value){
         head = new Node();
         head->data = value;
         count += 1;
-    }
+    } 
     else {
         Node* temp;
         temp = new Node();
         temp->data = value;
         temp->next = head;
         head = temp;
+        head->next->prev = head;
         count += 1;
     }
 }
@@ -89,6 +104,7 @@ void List :: push_back(int value){
         temp->data = value;
         temp->prev = end;
         end = temp;
+        end->prev->next = end;
         count += 1;
     }
 }
