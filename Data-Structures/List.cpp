@@ -10,6 +10,7 @@ class List{
     int count = 0;
     Node* end = NULL;
     Node* head = NULL;
+    bool empty();
     void push_front(int );
     void push_back(int );
     void pop_back();
@@ -18,6 +19,13 @@ class List{
     void insert(int ,int );
     void clear();
 };
+bool List :: empty();{
+    if (count > 0)
+    {
+        return false;
+    }
+    return true;
+}
 void List::clear(){  
     Node* temp;
     while (head != NULL)
