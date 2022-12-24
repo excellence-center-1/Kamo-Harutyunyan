@@ -10,6 +10,8 @@ class MinStat:
             if self.num > num:
                 self.num = num
     def result(self):
+        if self.count == 0:
+            return None
         return self.num
 class MaxStat:
     def __init__(self):
@@ -23,6 +25,8 @@ class MaxStat:
             if self.num < num:
                 self.num = num
     def result(self):
+        if self.count == 0:
+            return None
         return self.num
 class AverageStat:
     def __init__(self):
@@ -32,13 +36,11 @@ class AverageStat:
         self.num += num
         self.count += 1
     def result(self):
+        if self.count == 0:
+            return None
         return self.num / self.count
-values = [1, 2, 4, 5]
 mins = MinStat()
 maxs = MaxStat()
 average = AverageStat()
-for v in values:
-    mins.add_number(v)
-    maxs.add_number(v)
-    average.add_number(v)
-print(mins.result(), maxs.result(), '{:<05.3}'.format(average.result()))
+print(mins.result(), maxs.result(), average.result())
+
