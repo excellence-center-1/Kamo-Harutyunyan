@@ -1,0 +1,10 @@
+sudo -i -u postgres
+psql
+CREATE DATABASE hmw_db;
+CREATE USER admin WITH PASSWORD 'first_pass441';
+CREATE USER beginner WITH PASSWORD 'first_pass4581';
+ALTER ROLE admin WITH PASSWORD 'new_pass42241';
+ALTER ROLE beginner WITH PASSWORD 'new_pass113';
+REVOKE ALL ON DATABASE hmw_db FROM PUBLIC;
+GRANT CONNECT ON DATABASE hmw_db to beginner;
+GRANT ALL PRIVILEGES ON DATABASE hmw_db to admin;
