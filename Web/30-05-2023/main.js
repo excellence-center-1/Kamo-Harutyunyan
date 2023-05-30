@@ -11,8 +11,53 @@ for (let i = 0; i < board_size; ++i){
     board.push(tmp_arr);
 }
 const win_checker = (row, col) => {
-    for (let i = 0; i < 4; ++i){
-        //if (){
+    if (current_player === 1){
+        if (row === 0){
+            if (board[row + 1][col] === board[row][col] && board[row][col] === board[row + 2][col]){
+                return 1;
+            }
+            else if (col === 0){
+                if (board[row + 1][col + 1] === board[row][col] && board[row][col] === board[row + 2][col + 2]){
+                    return 1;
+                }
+            }
+            else if (col === board_size - 1){
+                if (board[row + 1][col - 1] === board[row][col] && board[row][col] === board[row + 2][col - 2]){
+                    return 1;
+                }
+            }
+        }
+        else if (row === board_size - 1){
+            if (board[row - 1][col] === board[row][col] && board[row][col] === board[row - 2][col]){
+                return 1;
+            }
+            else if (col === 0){
+                if (board[row - 1][col + 1] === board[row][col] && board[row][col] === board[row - 2][col + 2]){
+                    return 1;
+                }
+            }
+            else if (col === board_size - 1){
+                if (board[row - 1][col - 1] === board[row][col] && board[row][col] === board[row - 2][col - 2]){
+                    return 1;
+                }
+            }
+        }
+        else if (col === board_size - 1){
+            if (board[row - 1][col] === board[row][col] && board[row][col] === board[row - 2][col]){
+                return 1;
+            }
+            else if (col === 0){
+                if (board[row - 1][col + 1] === board[row][col] && board[row][col] === board[row - 2][col + 2]){
+                    return 1;
+                }
+            }
+            else if (col === board_size - 1){
+                if (board[row - 1][col - 1] === board[row][col] && board[row][col] === board[row - 2][col - 2]){
+                    return 1;
+                }
+            }
+        }
+
     }
 }
 const start_game = () => {
@@ -21,10 +66,7 @@ const start_game = () => {
     }
 }
 const move_checker = (number) => {
-    if (number < board_size && number > -1){
-        return true;
-    }
-    return false;
+    return number < board_size && number > -1;
 }
 const move = () => {
     let col;
