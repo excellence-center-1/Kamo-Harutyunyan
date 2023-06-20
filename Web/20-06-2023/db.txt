@@ -1,0 +1,13 @@
+CREATE DATABASE users_info;
+
+\c users_info
+
+CREATE TABLE user_info (  
+  User_id SERIAL PRIMARY KEY,                                       
+  First_Name VARCHAR(10),
+  Last_Name VARCHAR(20),
+  Date_of_Birth DATE,
+  Email VARCHAR(100),
+  Password VARCHAR(200)
+);
+
