@@ -15,11 +15,11 @@ const pool = new Pool({
 
 const typeDefs = gql`
   type User {                                 
-    First_Name: String!
-    Last_Name: String!
-    Date_of_Birth: String!
-    Email: String!
-    Password: String!
+    First_Name: String
+    Last_Name: String
+    Date_of_Birth: String
+    Email: String
+    Password: String
   }
 
   type Query {
@@ -27,7 +27,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(First_Name: String!, Last_Name: String!, Date_of_Birth: String!, Email: String!, Password: String!): User!
+    createUser(First_Name: String, Last_Name: String, Date_of_Birth: String, Email: String, Password: String): User!
   }
 `;
 

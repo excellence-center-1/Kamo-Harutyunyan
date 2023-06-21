@@ -21,11 +21,9 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   useEffect(() => {
-    document.title = "Sign Up";
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("firstName --------> ", firstName);
 
     createUser({
       variables: {
@@ -40,9 +38,6 @@ const Signup = () => {
     e.target.reset();
 
   };
-
-
-  console.log("----> ", firstName);
 
   const [createUser] = useMutation(CREATE_USER);
 
@@ -90,7 +85,9 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={!email || !password || !dateOfBirth || !lastName || !firstName}>
+          Sign Up
+        </button>
       </form>
     </div>
   );
