@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "apollo-server-express": "^3.12.0",
+    "pg": "^8.11.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
