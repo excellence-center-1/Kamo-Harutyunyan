@@ -6,7 +6,7 @@ const validateEmail = email => typeof email === "string" && email.includes("@");
 const SignupPage = ({ handleLoginClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [name, setname] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
 
   const handleEmailChange = (event) => {
@@ -17,20 +17,21 @@ const SignupPage = ({ handleLoginClick }) => {
     setPassword(event.target.value);
   };
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handlenameChange = (event) => {
+    setname(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    console.log("~~~~~~~~~ testtest");
     event.preventDefault();
 
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('http://localhost:4000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, username, password }),
+        body: JSON.stringify({ email, name, password }),
       });
 
       if (response.ok) {
@@ -55,13 +56,13 @@ const SignupPage = ({ handleLoginClick }) => {
         </div>
         <div className="input-container">
           <label>Username</label>
-          <input type="text" value={username} onChange={handleUsernameChange} />
+          <input type="text" value={name} onChange={handlenameChange} />
         </div>
         <div className="input-container">
           <label>New Password</label>
           <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
-        <button type="submit" disabled={!email || !password || !username}>
+        <button type="submit" disabled={!email || !password || !name}>
           Sign up
           </button>
         <p>
