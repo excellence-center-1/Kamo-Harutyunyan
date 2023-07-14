@@ -18,30 +18,30 @@ const pool = new Pool({
 app.use(express.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-  const token = req.headers['authorization'];
+// app.use((req, res, next) => {
+//   const token = req.headers['authorization'];
 
-  if (token) {
-    jwt.verify(token, secretKey, (err, decoded) => {
-      if (err) {
-        return res.status(401).json({ message: 'Invalid token' });
-      } else {
-        req.user = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(401).json({ message: 'Token missing' });
-  }
-});
+//   if (token) {
+//     jwt.verify(token, secretKey, (err, decoded) => {
+//       if (err) {
+//         return res.status(401).json({ message: 'Invalid token' });
+//       } else {
+//         req.user = decoded;
+//         next();
+//       }
+//     });
+//   } else {
+//     res.status(401).json({ message: 'Token missing' });
+//   }
+// });
 
 
 app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { name, password } = req.body;
 
   pool.query(
-    'SELECT * FROM your_table WHERE username = $1',
-    [username],
+    'SELECT * FROM users WHERE name = $1',
+    [name],
     (error, result) => {
       if (error) {
         console.error('Error executing query', error);
@@ -52,7 +52,7 @@ app.post('/login', (req, res) => {
         } else {
           const user = result.rows[0];
           if (user.password === password) {
-            const token = jwt.sign({ username }, secretKey);
+            const token = jwt.sign({ name }, secretKey);
             res.json({ token });
           } else {
             res.status(401).json({ message: 'Invalid user or password' });
@@ -66,20 +66,19 @@ app.post('/login', (req, res) => {
 
 
 app.post('/signup', async (req, res) => {
-  const { email, username, password } = req.body;
+  const { email, name, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const insertQuery =
-      'INSERT INTO "user" (email, username, password) VALUES ($1, $2, $3)';
-    await pool.query(insertQuery, [email, username, hashedPassword]);
-
-    res.status(201).json({ message: 'User registered successfully' });
+    const newUser = await User.create({ name, email, hashedPassword });
+    res.status(201).json({ message: 'Registration successful', user: newUser });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'User registration failed', error: error.message });
   }
 });
+
+
 
 
 app.listen(port, () => {
