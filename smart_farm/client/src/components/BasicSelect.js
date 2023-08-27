@@ -14,28 +14,38 @@ export const BasicSelect = ({ onChange }) => {  // Accept onChange prop
     onChange(newForm);  // Call the provided onChange function
   };
 
-  const SelectStyle = { 
-    width: '100%',
-    height: '50%'
+  const SelectStyle = {
+    width: '35%',
+    height: '100%'
   };
-
+   const FarmStyle={
+    marginLeft: '32%',
+  } 
+ 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+    <div >
+      <FormControl fullWidth style={FarmStyle} >
         <InputLabel id="demo-simple-select-label">View form</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={form}
-          label="Form"
+          label="Farm"
           onChange={handleChange}
           style={SelectStyle}
         >
-          <MenuItem value={10}>Diagram</MenuItem>
-          <MenuItem value={20}>Circle Diagram</MenuItem>
-          <MenuItem value={30}>Bar Diagram</MenuItem>
+          <MenuItem value={'Diagram'}>Diagram</MenuItem>
+          <MenuItem value={'BarDiagram'}>Bar Diagram</MenuItem>
+          <MenuItem value={'CircleDiagram'}>Circle Diagram</MenuItem>
+          <MenuItem value={'BasicTable'}>BasicTable</MenuItem>
         </Select>
       </FormControl>
-    </Box>
+      <Box sx={{ minWidth: 520 }}>
+
+        {/* {form === 'Diagram' && <Diagram />}
+        {form === 'BarDiagram' && <BarDiagram />}
+        {form === 'CircleDiagram' && <CircleDiagram />} */}
+      </Box>
+    </div>
   );
 };
