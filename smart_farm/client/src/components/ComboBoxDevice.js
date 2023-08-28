@@ -25,7 +25,7 @@ export const ComboBoxDevice = ({ selectedDevice, handleDeviceChange }) => {
       id="combo-box-demo"
       options={topDevices}
       sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
+      renderInput={(params) => <TextField {...params} label="Device" />}
       value={selectedDevice}
       onChange={handleDeviceChange}
     />
