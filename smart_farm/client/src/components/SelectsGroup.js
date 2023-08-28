@@ -43,42 +43,14 @@ export const SelectsGroup = () => {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F0F0F0",
+    borderTop: "2px solid green",
+    borderLeft: "2px solid green",
+    borderRight: "2px solid green",
+    borderBottom: "2px solid green",
+    boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.5)",
+    borderRadius: "10px",
   };
 
-  const lineStyle = {
-    position: "absolute",
-    width: "100%",
-    height: "2px",
-    backgroundColor: "green",
-  };
-
-  const topLineStyle = {
-    ...lineStyle,
-    top: 0,
-    right: "0.001%",
-  };
-
-  const bottomLineStyle = {
-    ...lineStyle,
-    bottom: 0,
-    right: "0.001%",
-  };
-
-  const leftLineStyle = {
-    ...lineStyle,
-    top: 0,
-    height: "100%", // Change height to 100% to cover the entire box height
-    width: "2px", // Adjust width for a vertical line
-    left: 0,
-  };
-
-  const rightLineStyle = {
-    ...lineStyle,
-    top: 0,
-    height: "100%", // Change height to 100% to cover the entire box height
-    width: "2px", // Adjust width for a vertical line
-    right: 0,
-  };
 
   React.useEffect(() => {
     if (value[0]) {
@@ -142,12 +114,7 @@ export const SelectsGroup = () => {
           >
             Send
           </Button>
-
           {selectedComponent && renderSelectedComponent()}
-          <div style={topLineStyle}></div>
-          <div style={bottomLineStyle}></div>
-          <div style={leftLineStyle}></div>
-          <div style={rightLineStyle}></div>
         </div>
       </LocalizationProvider>
     </div>

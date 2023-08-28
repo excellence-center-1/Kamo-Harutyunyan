@@ -9,11 +9,9 @@ export const ComboBoxDevice = ({ selectedDevice, handleDeviceChange }) => {
     setSelectedDevice(newValue);
   }; */
   const topDevices = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 }
+    { label: 'Բահ', year: 1994 },
+    { label: 'Փոցխ', year: 1972 },
+    { label: 'Գերանդի', year: 1974 },
   ];
   useEffect(() => {
     console.log(selectedDevice); // Log the updated selectedDevice in useEffect
