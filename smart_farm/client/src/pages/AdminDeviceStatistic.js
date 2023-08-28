@@ -5,7 +5,7 @@ import { BarDiagram } from "../components/BarDiagram";
 import { Diagram } from "../components/Diagram";
 import { CircleDiagram } from "../components/CircleDiagram";
 import { DateRange } from "../components/DateRange";
-import {BasicSelect} from "../components/BasicSelect";
+import {BasicSelect} from "../components/BasicSelectForm";
 
 
 
