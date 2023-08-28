@@ -11,11 +11,16 @@ import { CircleDiagram } from './CircleDiagram';
 import { BasicTable } from './BasicTable';
 import { ComboBoxDevice } from './ComboBoxDevice';
 import  { useState }  from 'react';
+
 export const DateRange = () => {
   const [value, setValue] = React.useState([dayjs('2022-04-17'), dayjs('2022-04-21')]);
   const [form, setForm] = React.useState('');
   const [selectedComponent, setSelectedComponent] = React.useState(null); // State for selected component
   const [selectedDevice, setSelectedDevice] = useState(null);
+
+  const handleDeviceChange = (event, newValue) => {
+    setSelectedDevice(newValue);
+  };
   
   React.useEffect(() => {
     if (value[0]) {
@@ -44,7 +49,7 @@ export const DateRange = () => {
     minHeight: '80vh', // Ensure the container takes up the full viewport height
   };
 
-  const isButtonEnabled = value[0] && value[1] && form !== '' && selectedDevice!==null;
+  const isButtonEnabled = value[0] && value[1] && form !== '' && selectedDevice !== null;
 
   // Function to render the selected component
   const renderSelectedComponent = () => {
@@ -68,14 +73,12 @@ export const DateRange = () => {
       setSelectedComponent(form); // Set the selected component based on the form selection
     }
   };
-  const handleDeviceChange = (event, newValue) => {
-    setSelectedDevice(newValue);
-  };
+  
 
   return (
     <div style={containerStyle}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <ComboBoxDevice selectedDevice={selectedDevice} handleDeviceChange={handleDeviceChange}/>
+      <ComboBoxDevice selectedDevice={selectedDevice} handleDeviceChange={handleDeviceChange} />
         <DateRangePicker
           value={value}
           onChange={(newValue) => setValue(newValue)}
