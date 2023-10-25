@@ -1,0 +1,39 @@
+/* src/components/Tasks.css */
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-item {
+    background: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 0 0 calc(33.33% - 20px); /* Adjust this to control the width */
+    box-sizing: border-box;
+  }
+  
+  .task-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .task-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .task-priority {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .main-page-button {
+    text-align: center;
+  }
+  
+  

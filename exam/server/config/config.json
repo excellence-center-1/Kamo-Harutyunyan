@@ -1,0 +1,12 @@
+{
+  "development": {
+    "username": "myuser",
+    "password": "mypass",
+    "database": "trello",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "minifyAliases": true,
+    "seederStorage": "sequelize",
+    "logging": false
+  }
+}

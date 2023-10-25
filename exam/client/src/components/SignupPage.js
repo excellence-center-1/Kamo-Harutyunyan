@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
+import bcrypt from 'bcryptjs'
 import './SignupPage.css';
+
 
 const SignupPage = () => {
   const [firstName, setFirstName] = useState('');
@@ -7,18 +10,18 @@ const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [date_of_birth, setdate_of_birth] = useState('');
   const [email, setemail] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const hashed_password = bcrypt.hashSync(password, 10)
     const userData = {
       firstName: firstName,
       lastName: lastName,
-      password: password,
+      password: hashed_password,
       date_of_birth: date_of_birth,
       email:email,
     };
-
     try {
       const response = await fetch('http://localhost:4000/register', {
         method: 'POST',
@@ -27,20 +30,18 @@ const SignupPage = () => {
         },
         body: JSON.stringify(userData),
       });
-
       if (response.ok) {
         console.log('User registered successfully');
-        
+        setTimeout(() => {
+          navigate('/login');
+        },1500);
       } else {
         console.log('User registration failed');
-       
       }
     } catch (error) {
       console.error(error);
-     
     }
   };
-
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
@@ -99,8 +100,8 @@ const SignupPage = () => {
           <input type="submit" value="Sign Up" />
         </div>
       </form>
+      <p> Already have an account? <Link to="/login">Login</Link> </p>
     </div>
   );
 };
-
 export default SignupPage;

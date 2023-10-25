@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
-import LoginPage from './LoginPage';
-import SignupPage from './SignupPage';
-import TrelloBoard from './board';
+import React from 'react';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage';
+import Board from './components/Board';
+import CreateTask from './components/CreateTask';
+import TaskList from './components/Tasks';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('login');
-
-  const handleButtonClick = () => {
-    setCurrentPage(currentPage === 'login' ? 'signup' : 'login');
-  };
-
-  const handleLoginSuccess = () => {
-    setCurrentPage('TrelloBoard');
-  };
-
+function App() {
   return (
-    <div className="container">
-      {currentPage === 'login' && <LoginPage onLoginSuccess={handleLoginSuccess} />}
-      {currentPage === 'signup' && <SignupPage />}
-      {currentPage === 'TrelloBoard' && <TrelloBoard />}
-      {currentPage !== 'TrelloBoard' && (
-        <button className="toggle-button" onClick={handleButtonClick}>
-          {currentPage === 'login' ? 'Go to Signup' : 'Go to Login'}
-        </button>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/register' element={<SignupPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path="/board" element={<Board />} />
+        <Route path='/createtask' element={<CreateTask />} />
+        <Route path="/tasks" element={<TaskList />} />
+        <Route path='/' element={<Navigate to='register' />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
